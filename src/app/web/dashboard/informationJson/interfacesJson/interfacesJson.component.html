@@ -1,0 +1,36 @@
+<div>
+  <h3 for="jsonTextarea" class="block text-white text-md font-bold my-6">Interfaces generada:</h3>
+ 
+  <!-- FORMULARIO -->
+  <form *ngIf="interfaces.length > 0" action="" class="my-6" [formGroup]="miFormulario" (ngSubmit)="enviar()" autocomplete="off">
+    <div>
+      <label for="interface_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre de la interfaz:</label>
+      <input type="text" formControlName="interface_name" id="interface_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nombre de la interfaz" required />
+    </div>
+    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md mt-4 text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Guardar</button>
+  </form>
+  <!-- CAJA DE LA INTERFAZ -->
+  <div class="p-6 w-full rounded-md  shadow-lg bg-gray-200 relative">
+    <a *ngIf="interfaces.length > 0"  (click)="copyText($event)" class="cursor-pointer">
+      <svg class="w-6 h-6 text-gray-800 absolute right-5 top-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+        <path fill-rule="evenodd" d="M18 3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1V9a4 4 0 0 0-4-4h-3a1.99 1.99 0 0 0-1 .267V5a2 2 0 0 1 2-2h7Z" clip-rule="evenodd"/>
+        <path fill-rule="evenodd" d="M8 7.054V11H4.2a2 2 0 0 1 .281-.432l2.46-2.87A2 2 0 0 1 8 7.054ZM10 7v4a2 2 0 0 1-2 2H4v6a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3Z" clip-rule="evenodd"/>
+      </svg>
+    </a>
+    
+    <ng-container *ngFor="let interface of interfaces">
+      <code #textCopy [innerHTML]="interface"></code>
+    </ng-container>
+  </div>
+
+  <!-- ALERTA DE CAMBIO -->
+  <div *ngIf="cambiaNombre" class="p-4 mb-4 w-fit absolute right-10 top-10 text-sm rounded-md bg-green-200 text-green-600" role="alert">
+    <span class="font-medium">¡Operación realizada!</span> El nombre de la interfaz se ha cambiado correctamente.
+  </div>
+
+  <!-- ALERTA COPIADO -->
+
+  <div *ngIf="interfazCopiada" class="p-4 mb-4 w-fit absolute right-10 top-10 text-sm rounded-md bg-blue-200 text-blue-600" role="alert">
+    <span class="font-medium">¡Operación realizada!</span> Se ha copiado correctamente
+  </div>
+</div>
