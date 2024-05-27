@@ -32,15 +32,19 @@ export class DataJsonComponent implements OnInit, AfterViewInit {
       map((event: Event) => (event.target as HTMLTextAreaElement).value)
     ).subscribe(value => {
       // Aquí puedes hacer lo que necesites con el valor del textarea
-
+      console.log(value);
       if(!this.formService.isValidJson(value)){
         this.notValidJson = true;
-      }else if(this.formService.isValidJson(value) || value == ''){
+      }else if(this.formService.isValidJson(value) ){
+        this.transformInterfacceService.setLlegaTextoTextarea(value);
+      }
+
+      if(value == ''){
         this.notValidJson = false;
       }
       
       console.log("cambio textarea" + value);
-      this.transformInterfacceService.setLlegaTextoTextarea(value);
+     
     });
   }
 
