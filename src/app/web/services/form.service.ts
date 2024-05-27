@@ -13,16 +13,13 @@ export class FormService {
 
   constructor( private chooseFileService: ChooseFileService) { }
 
-  // onJsonTextChange(newText: string): void {
-  //   try {
-  //     this.jsonContent = JSON.parse(newText);
-  //     this.jsonText = JSON.stringify(this.jsonContent, null, 2);
-  //     this.chooseFileService.setAlertasData(this.jsonText);
-  //     console.log('JSON content updated');
-  //   } catch (e) {
-  //     console.error('Error al parsear el JSON:', e);
-  //     this.errorMessage = 'El contenido del JSON no es válido.';
-  //   }
-  // }
+  isValidJson(jsonString: string): boolean {
+    try {
+      JSON.parse(jsonString);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
   
 }

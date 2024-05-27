@@ -15,8 +15,10 @@ export class DataJsonComponent implements OnInit, AfterViewInit {
 
   @ViewChild('textarea') textarea!: ElementRef;
 
+  notValidJson: boolean = false;
+
   private debouncer: Subject<String> = new Subject<String>();
-  constructor(private transformInterfacceService: TransformInterfacesService){
+  constructor(private transformInterfacceService: TransformInterfacesService, private formService: FormService){
 
   }
 
@@ -26,10 +28,17 @@ export class DataJsonComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     fromEvent<Event>(this.textarea.nativeElement, 'input').pipe(
-      debounceTime(300),
+      debounceTime(500),
       map((event: Event) => (event.target as HTMLTextAreaElement).value)
     ).subscribe(value => {
       // Aquí puedes hacer lo que necesites con el valor del textarea
+
+      if(!this.formService.isValidJson(value)){
+        this.notValidJson = true;
+      }else if(this.formService.isValidJson(value) || value == ''){
+        this.notValidJson = false;
+      }
+      
       console.log("cambio textarea" + value);
       this.transformInterfacceService.setLlegaTextoTextarea(value);
     });
