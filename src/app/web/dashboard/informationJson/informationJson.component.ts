@@ -12,7 +12,9 @@ export class InformationJsonComponent implements OnInit, OnDestroy {
 
  
 
-  jsonText: string = '';
+  private jsonText: string = '';
+
+  @Input() limpiarTodo: boolean = false;
 
   private alertaSubscription!: Subscription;
 
@@ -23,6 +25,10 @@ export class InformationJsonComponent implements OnInit, OnDestroy {
       console.log(data);
       this.jsonText = data;
     });
+  }
+
+  get getjsonText(){
+    return this.jsonText;
   }
 
   ngOnDestroy(): void {

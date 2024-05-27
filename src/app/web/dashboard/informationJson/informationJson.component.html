@@ -1,9 +1,9 @@
 <div class="w-full container flex  gap-12">
   <div class="flex-1">
-    <app-dataJson [jsonText]="jsonText"></app-dataJson>
+    <app-dataJson [limpiarTodo]="limpiarTodo" [jsonText]="getjsonText"></app-dataJson>
   </div>
 
   <div class="flex-1">
-  <app-interfacesJson [jsonText]="jsonText"></app-interfacesJson>
+  <app-interfacesJson [limpiarTodo]="limpiarTodo" [jsonText]="getjsonText"></app-interfacesJson>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormService } from '../../services/form.service';
 import { ChooseFileService } from '../../services/chooseFile.service';
 
@@ -7,18 +7,29 @@ import { ChooseFileService } from '../../services/chooseFile.service';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, OnChanges {
 
   jsonText = '';
   jsonContent: any;
 
-  
+  @ViewChild('inputFile') inputFile!: ElementRef<HTMLInputElement>;
+
+  @Input() limpiarTodo: boolean = false;
 
   errorFormato: boolean = false;
 
   constructor(public formService: FormService, private chooseFileService: ChooseFileService) { }
 
   ngOnInit() {
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['limpiarTodo'] && changes['limpiarTodo'].currentValue) {
+      this.limpiarTodo = changes['limpiarTodo'].currentValue;
+      console.log(this.limpiarTodo);  
+      this.inputFile.nativeElement.value = '';
+
+    }
   }
 
   onFileSelected(event: Event): void {

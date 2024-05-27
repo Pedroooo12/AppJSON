@@ -26,6 +26,8 @@ export class InterfacesJsonComponent implements OnInit, OnDestroy, OnChanges {
 
   private alertaSubscription!: Subscription;
 
+  @Input() limpiarTodo: boolean = false;
+
 
   constructor(private transformInterfaceService: TransformInterfacesService, private fb: FormBuilder) {
     this.miFormulario = this.fb.group({
@@ -56,6 +58,16 @@ export class InterfacesJsonComponent implements OnInit, OnDestroy, OnChanges {
 
       this.jsonObject = JSON.parse(newData);
       this.interfaces = this.transformInterfaceService.jsonToInterface(this.jsonObject);
+    }
+
+    if (changes['limpiarTodo'] && changes['limpiarTodo'].currentValue) {
+      this.limpiarTodo = changes['limpiarTodo'].currentValue;
+      if(this.limpiarTodo){
+        console.log(this.limpiarTodo);  
+        this.jsonText = '';
+        this.interfaces = [];
+      }
+
     }
   }
 

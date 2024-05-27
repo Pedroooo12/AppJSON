@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  limpiarTodo: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  limpiar(){
+    this.limpiarTodo = true;
   }
 
 }
