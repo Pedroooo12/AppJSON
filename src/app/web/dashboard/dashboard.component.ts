@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
 
   limpiar(){
     this.limpiarTodo = true;
+    console.log("limpiar");
   }
 
 }
