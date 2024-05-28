@@ -28,6 +28,11 @@ export class DataJsonComponent implements OnInit, AfterViewInit, OnChanges {
     
   }
 
+  formatear(){
+    this.textarea.nativeElement.value = this.formService.formatJson(this.textarea.nativeElement.value);
+    console.log("formatear");
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes['limpiarTodo'] && changes['limpiarTodo'].currentValue) {
       this.limpiarTodo = changes['limpiarTodo'].currentValue;

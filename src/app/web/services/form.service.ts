@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ChooseFileService } from './chooseFile.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +10,7 @@ export class FormService {
   jsonText: string = '';
   errorMessage: string = '';
 
-  constructor( private chooseFileService: ChooseFileService) { }
+  constructor() { }
 
   isValidJson(jsonString: string): boolean {
     try {
@@ -20,6 +19,12 @@ export class FormService {
     } catch (error) {
       return false;
     }
+  }
+
+  formatJson(json: any, indent: number = 4): string {
+    const parsedJson = JSON.parse(json);
+    const formattedJson = JSON.stringify(parsedJson, null, 4);
+    return formattedJson;
   }
   
 }
