@@ -24,24 +24,26 @@ export class InterfacesJsonComponent implements OnInit, OnDestroy, OnChanges {
 
   interfazCopiada: boolean = false;
 
+  valorNombreInterfaz: string = '';
+
   private alertaSubscription!: Subscription;
 
   @Input() limpiarTodo: boolean = false;
 
 
-  constructor(private transformInterfaceService: TransformInterfacesService, private fb: FormBuilder) {
+  constructor(private _transformInterfaceService: TransformInterfacesService, private fb: FormBuilder) {
     this.miFormulario = this.fb.group({
       // 1 campo valores, 2 campo validaciones sincronas, 3 campo validaciones asincronas
-      interface_name:  ['', [Validators.required]],
+      interface_name:  ['Root', [Validators.required]],
     })
    }
 
 
   ngOnInit() {
-    this.alertaSubscription = this.transformInterfaceService.llegaDelTextarea$.subscribe(data => {
+    this.alertaSubscription = this._transformInterfaceService.llegaDelTextarea$.subscribe(data => {
       this.textoTextarea = data;
 
-      this.interfaces = this.transformInterfaceService.stringToInterface(data);
+      this.interfaces = this._transformInterfaceService.stringToInterface(data);
     });
   }
 
@@ -57,7 +59,7 @@ export class InterfacesJsonComponent implements OnInit, OnDestroy, OnChanges {
       const newData = changes["jsonText"].currentValue;
 
       this.jsonObject = JSON.parse(newData);
-      this.interfaces = this.transformInterfaceService.jsonToInterface(this.jsonObject);
+      this.interfaces = this._transformInterfaceService.jsonToInterface(this.jsonObject);
     }
 
     if (changes['limpiarTodo'] && changes['limpiarTodo'].currentValue) {
@@ -67,13 +69,16 @@ export class InterfacesJsonComponent implements OnInit, OnDestroy, OnChanges {
         this.jsonText = '';
         this.interfaces = [];
       }
-
     }
+  }
+
+  downloadFile(){
+    this._transformInterfaceService.downloadInterfaces(this.jsonObject, this.valorNombreInterfaz);
   }
 
   copyText(event: any) {
     event.preventDefault();
-    navigator.clipboard.writeText(this.transformInterfaceService.prepareCopyText(this.interfaces)).then(() => {
+    navigator.clipboard.writeText(this._transformInterfaceService.prepareCopyText(this.interfaces)).then(() => {
       console.log('Texto copiado al portapapeles');
       this.interfazCopiada = true;
       setTimeout(() => {
@@ -95,11 +100,13 @@ export class InterfacesJsonComponent implements OnInit, OnDestroy, OnChanges {
       return;
     }
     console.log(this.miFormulario.value);
+
+    this.valorNombreInterfaz = this.miFormulario.controls['interface_name'].value;
     
     if(this.textoTextarea == ''){
-      this.interfaces = this.transformInterfaceService.jsonToInterface(this.jsonObject, this.miFormulario.controls['interface_name'].value);
+      this.interfaces = this._transformInterfaceService.jsonToInterface(this.jsonObject, this.valorNombreInterfaz);
     }else{
-      this.interfaces = this.transformInterfaceService.stringToInterface(this.textoTextarea, this.miFormulario.controls['interface_name'].value);
+      this.interfaces = this._transformInterfaceService.stringToInterface(this.textoTextarea, this.valorNombreInterfaz);
     }
     
 

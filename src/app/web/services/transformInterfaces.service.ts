@@ -28,9 +28,6 @@ constructor() { }
       interfaceString += "<br>";
       interfaceString += "<br>";
       interfaceStrings.push(interfaceString.trim());
-      
-
-    
   }
     parseObject(json, interfaceName); 
     
@@ -51,6 +48,16 @@ constructor() { }
     interfaceStrings[lastInterfaceStringIndex] = interfaceStrings[lastInterfaceStringIndex].replace(/<br><br>$/, ''); 
     console.log(interfaceStrings);
     return interfaceStrings;
+  }
+
+  downloadInterfaces(json: string, fileName: string): void {
+    const blob = new Blob([json], { type: 'text/plain;charset=utf-8' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName.endsWith('.ts') ? fileName : fileName + '.ts'; 
+    a.click();
+    window.URL.revokeObjectURL(url);
   }
 
   stringToInterface(json: string, interfaceName: string = 'Root'): string[] {

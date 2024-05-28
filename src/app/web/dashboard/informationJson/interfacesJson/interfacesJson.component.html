@@ -17,6 +17,13 @@
         <path fill-rule="evenodd" d="M8 7.054V11H4.2a2 2 0 0 1 .281-.432l2.46-2.87A2 2 0 0 1 8 7.054ZM10 7v4a2 2 0 0 1-2 2H4v6a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3Z" clip-rule="evenodd"/>
       </svg>
     </a>
+
+    <a *ngIf="interfaces.length > 0"  (click)="downloadFile()" class="cursor-pointer">
+      <svg class="w-6 h-6 text-gray-800 absolute right-14 top-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5m9 8h.01"/>
+      </svg>
+      
+    </a>
     
     <ng-container *ngFor="let interface of interfaces">
       <code #textCopy [innerHTML]="interface"></code>
