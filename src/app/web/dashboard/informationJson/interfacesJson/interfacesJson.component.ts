@@ -73,7 +73,7 @@ export class InterfacesJsonComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   downloadFile(){
-    this._transformInterfaceService.downloadInterfaces(this.jsonObject, this.valorNombreInterfaz);
+    this._transformInterfaceService.downloadInterfaces(this.jsonObject, this.valorNombreInterfaz || 'Root');
   }
 
   copyText(event: any) {
