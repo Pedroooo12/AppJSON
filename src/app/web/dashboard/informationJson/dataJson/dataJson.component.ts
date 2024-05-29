@@ -49,9 +49,13 @@ export class DataJsonComponent implements OnInit, AfterViewInit, OnChanges {
       debounceTime(500),
       map((event: Event) => (event.target as HTMLTextAreaElement).value)
     ).subscribe(value => {
-      if(!this.formService.isValidJson(value)){
+      if(this.formService.isValidJson(value) == false){
         this.notValidJson = true;
-      }else if(this.formService.isValidJson(value) ){
+      }else{
+        this.notValidJson = false;
+      }
+      
+      if(this.formService.isValidJson(value) ){
         this.transformInterfacceService.setLlegaTextoTextarea(value);
       }
 

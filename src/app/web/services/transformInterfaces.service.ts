@@ -33,9 +33,7 @@ constructor() { }
     
     //eliiminar los últimos dos br
     const lastInterfaceStringIndex = interfaceStrings.length - 1;
-  
 
-    console.log(interfaceStrings);
     if(interfaceStrings.length > 1){
       const ultimo = interfaceStrings[lastInterfaceStringIndex];
       const primero = interfaceStrings[0];
@@ -46,7 +44,6 @@ constructor() { }
     }
 
     interfaceStrings[lastInterfaceStringIndex] = interfaceStrings[lastInterfaceStringIndex].replace(/<br><br>$/, ''); 
-    console.log(interfaceStrings);
     return interfaceStrings;
   }
 
@@ -89,7 +86,7 @@ constructor() { }
     const lastInterfaceStringIndex = interfaceStrings.length - 1;
   
 
-    console.log(interfaceStrings);
+
     if(interfaceStrings.length > 1){
       const ultimo = interfaceStrings[lastInterfaceStringIndex];
       const primero = interfaceStrings[0];
@@ -100,7 +97,7 @@ constructor() { }
     }
 
     interfaceStrings[lastInterfaceStringIndex] = interfaceStrings[lastInterfaceStringIndex].replace(/<br><br>$/, ''); 
-    console.log(interfaceStrings);
+
     return interfaceStrings;
 }
 
@@ -131,7 +128,7 @@ constructor() { }
   public llegaDelTextarea$ = this.llegaDelTextarea.asObservable();
 
   setLlegaTextoTextarea(data: string) {
-    console.log(data);
+
     this.llegaDelTextarea.next(data);
   }
 }
