@@ -36,7 +36,6 @@ export class DataJsonComponent implements OnInit, AfterViewInit, OnChanges {
     if (changes['limpiarTodo'] && changes['limpiarTodo'].currentValue) {
       this.limpiarTodo = changes['limpiarTodo'].currentValue;
       if(this.limpiarTodo){
-        console.log(this.limpiarTodo);  
         this.jsonText = '';
         this.textarea.nativeElement.value='';
       }

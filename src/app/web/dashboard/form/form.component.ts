@@ -25,8 +25,7 @@ export class FormComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['limpiarTodo'] && changes['limpiarTodo'].currentValue) {
-      this.limpiarTodo = changes['limpiarTodo'].currentValue;
-      console.log(this.limpiarTodo);  
+      this.limpiarTodo = changes['limpiarTodo'].currentValue;  
       this.inputFile.nativeElement.value = '';
 
     }
@@ -70,7 +69,6 @@ export class FormComponent implements OnInit, OnChanges {
       this.jsonContent = JSON.parse(newText);
       this.jsonText = JSON.stringify(this.jsonContent, null, 2);
       this.chooseFileService.setAlertasData(this.jsonText);
-      console.log('JSON content updated');
     } catch (e) {
       console.error('Error al parsear el JSON:', e);
     }

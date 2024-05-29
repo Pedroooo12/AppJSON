@@ -34,7 +34,7 @@ export class InterfacesJsonComponent implements OnInit, OnDestroy, OnChanges {
   constructor(private _transformInterfaceService: TransformInterfacesService, private fb: FormBuilder) {
     this.miFormulario = this.fb.group({
       // 1 campo valores, 2 campo validaciones sincronas, 3 campo validaciones asincronas
-      interface_name:  ['Root', [Validators.required]],
+      interface_name:  ['', [Validators.required]],
     })
    }
 
@@ -109,13 +109,10 @@ export class InterfacesJsonComponent implements OnInit, OnDestroy, OnChanges {
       this.interfaces = this._transformInterfaceService.stringToInterface(this.textoTextarea, this.valorNombreInterfaz);
     }
     
-
     this.cambiaNombre = true;
     setTimeout(() => {
         this.cambiaNombre = false;
     }, 2500);
-
     this.miFormulario.reset();
   }
-
 }
