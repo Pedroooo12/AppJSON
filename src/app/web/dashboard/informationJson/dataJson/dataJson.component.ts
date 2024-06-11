@@ -19,13 +19,12 @@ export class DataJsonComponent implements OnInit, AfterViewInit, OnChanges {
 
   @Input() limpiarTodo: boolean = false;
 
-  private debouncer: Subject<String> = new Subject<String>();
   constructor(private transformInterfacceService: TransformInterfacesService, private formService: FormService){
 
   }
 
   ngOnInit(): void {
-    
+
   }
 
   formatear(){
@@ -39,13 +38,20 @@ export class DataJsonComponent implements OnInit, AfterViewInit, OnChanges {
         this.jsonText = '';
         this.textarea.nativeElement.value='';
       }
+    }
 
+    if(changes['jsonText']){
+      console.log(changes['jsonText'].currentValue);
+      this.jsonText = changes['jsonText'].currentValue;
+      if(this.textarea){
+        this.textarea.nativeElement.value = this.jsonText;
+      }
     }
   }
 
   ngAfterViewInit(): void {
     fromEvent<Event>(this.textarea.nativeElement, 'input').pipe(
-      debounceTime(500),
+      debounceTime(700),
       map((event: Event) => (event.target as HTMLTextAreaElement).value)
     ).subscribe(value => {
       if(this.formService.isValidJson(value) == false){

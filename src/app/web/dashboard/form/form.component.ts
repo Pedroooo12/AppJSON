@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormService } from '../../services/form.service';
 import { ChooseFileService } from '../../services/chooseFile.service';
 
@@ -14,6 +14,8 @@ export class FormComponent implements OnInit, OnChanges {
 
   @ViewChild('inputFile') inputFile!: ElementRef<HTMLInputElement>;
 
+  @Output() formChange = new EventEmitter<boolean>;
+
   @Input() limpiarTodo: boolean = false;
 
   errorFormato: boolean = false;
@@ -27,14 +29,15 @@ export class FormComponent implements OnInit, OnChanges {
     if (changes['limpiarTodo'] && changes['limpiarTodo'].currentValue) {
       this.limpiarTodo = changes['limpiarTodo'].currentValue;  
       this.inputFile.nativeElement.value = '';
-
     }
   }
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
+    this.formChange.emit(input.files!.length > 0);
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
+
 
       // Verificar el tipo de archivo
       if (file.type !== 'application/json') {
@@ -68,6 +71,7 @@ export class FormComponent implements OnInit, OnChanges {
     try {
       this.jsonContent = JSON.parse(newText);
       this.jsonText = JSON.stringify(this.jsonContent, null, 2);
+      console.log("jsonText:" + this.jsonText);
       this.chooseFileService.setAlertasData(this.jsonText);
     } catch (e) {
       console.error('Error al parsear el JSON:', e);

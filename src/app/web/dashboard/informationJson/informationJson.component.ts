@@ -1,5 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormService } from '../../services/form.service';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ChooseFileService } from '../../services/chooseFile.service';
 
@@ -10,6 +9,7 @@ import { ChooseFileService } from '../../services/chooseFile.service';
 })
 export class InformationJsonComponent implements OnInit, OnDestroy {
 
+  @Output() textareaChange = new EventEmitter<boolean>();
  
 
   private jsonText: string = '';
@@ -18,13 +18,21 @@ export class InformationJsonComponent implements OnInit, OnDestroy {
 
   private alertaSubscription!: Subscription;
 
-  constructor( private chooseFileService: ChooseFileService) { }
+  constructor( private chooseFileService: ChooseFileService) { 
+    this.onTextareaChange();
+  }
 
   ngOnInit() {
     this.alertaSubscription = this.chooseFileService.alertaFile$.subscribe(data => {
-      console.log(data);
+
       this.jsonText = data;
+      this.onTextareaChange();
     });
+  }
+
+  onTextareaChange() {
+
+    this.textareaChange.emit(false);
   }
 
   get getjsonText(){

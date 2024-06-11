@@ -19,7 +19,17 @@ export class DashboardComponent implements OnInit {
     
     setTimeout(() => {
       this.limpiarTodo = false;
-    }, 500);
+    }, 1000);
+  }
+
+  textareaChange(argumento: boolean){
+    console.log(argumento)
+    return argumento;
+  }
+
+  formChange(argumento: boolean){
+    console.log(argumento);
+    return argumento;
   }
 
 }

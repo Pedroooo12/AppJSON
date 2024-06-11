@@ -49,7 +49,6 @@ export class InterfacesJsonComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnDestroy(): void {
     if(this.alertaSubscription){
-      console.log("desuscribirse");
       this.alertaSubscription.unsubscribe();
     }
   }
@@ -65,7 +64,6 @@ export class InterfacesJsonComponent implements OnInit, OnDestroy, OnChanges {
     if (changes['limpiarTodo'] && changes['limpiarTodo'].currentValue) {
       this.limpiarTodo = changes['limpiarTodo'].currentValue;
       if(this.limpiarTodo){
-        console.log(this.limpiarTodo);  
         this.jsonText = '';
         this.interfaces = [];
       }
@@ -79,13 +77,12 @@ export class InterfacesJsonComponent implements OnInit, OnDestroy, OnChanges {
   copyText(event: any) {
     event.preventDefault();
     navigator.clipboard.writeText(this._transformInterfaceService.prepareCopyText(this.interfaces)).then(() => {
-      console.log('Texto copiado al portapapeles');
       this.interfazCopiada = true;
       setTimeout(() => {
         this.interfazCopiada = false;
       }, 3000); // Mostrar el mensaje de éxito durante 3 segundos
     }).catch((error) => {
-      console.error('Error al copiar al portapapeles: ', error);
+      console.log(error);
     });
   }
 

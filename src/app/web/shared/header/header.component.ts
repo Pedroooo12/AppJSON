@@ -8,13 +8,6 @@ import { ItemsMenu } from '../../interfaces/itemsMenu';
 })
 export class HeaderComponent implements OnInit {
 
-  itemsData: ItemsMenu[] = [
-    {
-      name: 'prueba',
-      position: 1
-    }
-  ];
-
   constructor() { }
 
   ngOnInit() {
