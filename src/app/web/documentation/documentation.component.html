@@ -1,3 +1,65 @@
-<p>
-  documentation works!
-</p>
+<section class="w-3/4 mx-auto sm:text-lg text-gray-400">
+  <h1 class="text-3xl font-bold text-white mb-6">Documentación</h1>
+
+  <h2 class="text-2xl font-bold text-white mb-6">1. ¿De qué trata la aplicación?</h2>
+  
+  <p class="text-white">
+    La aplicación sirve para que a partir de pasarle un archivo JSON o escribirlo, pegarlo en el formulario te cree las interfaces para TypeScript automáticamente.
+    <br>
+    Tenemos algunas opciones como:
+  </p>
+  <div class="mt-4 p-4 bg-verde-oscuro rounded-md text-white w-fit">
+    <ol class="ps-6 list-decimal font-medium">
+      <li>Formatear el json del formulario.</li>
+      <li>Eliminar el archivo o lo que has escrito en el formulario.</li>
+      <li>Cambiarle el nombre a la interfaz principal.</li>
+      <li>Copiar las interfaces generadas.</li>
+      <li>Descargar un archivo con las interfaces generadas.</li>
+    </ol>
+  </div>
+  
+  <h2 class="text-2xl font-bold text-white my-6">2. ¿Cómo usar la aplicación?</h2>
+  <p class="text-white">
+    <strong>2.1</strong> A la hora de usar la aplicación tenemos dos formas distintas para que nos genere la interfaz:
+  </p>
+  <div class="mt-6 flex flex-col md:flex-row gap-4">
+    <div>
+      <p class="text-white font-medium">
+        Introduciendo un archivo JSON.
+      </p>
+      <img src="assets/img/contenido1.png" class="hidden lg:block max-w-full" loading="lazy" alt="formulario input file">
+    </div>
+    <div>
+      <p class="text-white font-medium">
+        Escribiendo o pegando el texto en formato JSON.
+      </p>
+      <img src="assets/img/contenido2.png" class="hidden lg:block  max-w-full" loading="lazy" alt="escribiendo por texto">
+    </div>
+  </div>
+
+  <p class="text-white">
+    <strong>2.2</strong> A nuestra derecha se nos generará la interfaz automáticamente.
+  </p>
+  <div class="mt-6 flex flex-col md:flex-row gap-4">
+    <div>
+      <p class="text-white font-medium">
+        Cambiar el nombre de la interfaz principal.
+      </p>
+      <img src="assets/img/contenido3.png" class="hidden lg:block max-w-full" loading="lazy" alt="formulario input file">
+    </div>
+    <div>
+      <p class="text-white font-medium">
+        Opciones de copiar la interfaz o descargarla.
+      </p>
+      <img src="assets/img/contenido4.png" class="hidden lg:block  max-w-full" loading="lazy" alt="escribiendo por texto">
+    </div>
+  </div>
+  <h2 class="text-2xl font-bold text-white my-6">3. Posibles alertas que pueden salir.</h2>
+  <ul class="list-disc ps-6 font-medium text-white">
+    <li>Poner un archivo que no es JSON.</li>
+    <li>Escribir en el formulario algo que no sea como un archivo JSON.</li>
+    <li>Al modificar el nombre de la interfaz root</li>
+    <li>Eliminar el contenido.</li>
+    <li>Copiar la interfaz.</li>
+  </ul>
+</section>

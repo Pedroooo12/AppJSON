@@ -47,7 +47,7 @@ constructor() { }
     return interfaceStrings;
   }
 
-  downloadInterfaces(json: string, fileName: string): void {
+  downloadInterfaces(json: string, fileName: string): boolean {
     const blob = new Blob([json], { type: 'text/plain;charset=utf-8' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -55,7 +55,9 @@ constructor() { }
     a.download = fileName.endsWith('.ts') ? fileName : fileName + '.ts'; 
     a.click();
     window.URL.revokeObjectURL(url);
-  }
+
+    return true;
+  } 
 
   stringToInterface(json: string, interfaceName: string = 'Root'): string[] {
     const interfaceStrings: string[] = [];

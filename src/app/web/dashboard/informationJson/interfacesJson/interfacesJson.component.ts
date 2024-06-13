@@ -23,7 +23,7 @@ export class InterfacesJsonComponent implements OnInit, OnDestroy, OnChanges {
   cambiaNombre: boolean = false;
 
   interfazCopiada: boolean = false;
-
+  
   valorNombreInterfaz: string = '';
 
   private alertaSubscription!: Subscription;
@@ -71,7 +71,7 @@ export class InterfacesJsonComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   downloadFile(){
-    this._transformInterfaceService.downloadInterfaces(this.jsonObject, this.valorNombreInterfaz || 'Root');
+    this._transformInterfaceService.downloadInterfaces(this.jsonObject, this.valorNombreInterfaz || 'Root')
   }
 
   copyText(event: any) {
