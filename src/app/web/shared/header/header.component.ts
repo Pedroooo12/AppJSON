@@ -7,21 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  isVisible: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
   }
 
   modalChange(){
+    this.isVisible = !this.isVisible;    
     const sidebar = document.getElementById("logo-sidebar");
     const div = document.getElementById("box-sidebar");
-    if(sidebar?.classList.contains("-translate-x-full")){
-      sidebar?.classList.remove("-translate-x-full", "sm:translate-x-0");
+    if(this.isVisible){
+      sidebar?.classList.remove("-translate-x-full");
       div?.classList.add("pt-20");
     }else{
-      sidebar?.classList.add("-translate-x-full", "sm:translate-x-0");
       div?.classList.remove("pt-20");
+      sidebar?.classList.add("-translate-x-full");
     }
+
   }
 
   irRuta(){

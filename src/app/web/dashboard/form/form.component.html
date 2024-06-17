@@ -1,12 +1,26 @@
-<div class="w-1/2 mx-auto">
-  <h1 class="text-2xl sm:text-3xl font-bold text-gray-50 mb-6 text-center">Formulario de Registro</h1>
-  <form action="">
-    <label class="block mb-2 text-sm font-medium text-gray-50" for="file_input">Subir archivos</label>
-    <input #inputFile (change)="onFileSelected($event)" class="block w-full text-sm border cursor-pointer text-white  bg-verde-claro focus:outline-none  border-gray-600 placeholder:text-verde-claro" id="file_input" type="file">
+<div class="w-1/2 mx-auto relative">
+  <h1
+    class="text-2xl sm:text-3xl font-bold text-gray-50 mb-6 text-center">Formulario
+    de Registro</h1>
+  <form action class="w-fit mx-auto p-1 bg-verde-oscuro animate-flip-down animate-once animate-delay-200">
+      <label for="doc" class="cursor-pointer">
+        <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" d="M12 3a1 1 0 0 1 .78.375l4 5a1 1 0 1 1-1.56 1.25L13 6.85V14a1 1 0 1 1-2 0V6.85L8.78 9.626a1 1 0 1 1-1.56-1.25l4-5A1 1 0 0 1 12 3ZM9 14v-1H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-4v1a3 3 0 1 1-6 0Zm8 2a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H17Z" clip-rule="evenodd"/>
+        </svg>
+        <input 
+      #inputFile 
+      (change)="onFileSelected($event)"
+      class=" w-12 text-sm border cursor-pointer text-white  bg-verde-claro hidden focus:outline-none  border-gray-600 placeholder:text-verde-claro"
+      id="doc"
+      name="doc" 
+      type="file">
+     </label>
   </form>
 
-    <!-- ALERTA ERROR -->
-  <div *ngIf="errorFormato" class="p-4 mb-4 w-fit absolute right-10 top-10 text-sm rounded-md bg-red-200 text-red-600" role="alert">
+  <!-- ALERTA ERROR -->
+  <div *ngIf="errorFormato"
+    class="p-4 mb-4 w-fit absolute right-10 top-10 text-sm rounded-md bg-red-200 text-red-600"
+    role="alert">
     <span class="font-medium">¡Error!</span> Debes introducir un formato JSON.
   </div>
 </div>
